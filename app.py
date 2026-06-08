@@ -102,9 +102,9 @@ if submit:
 
         if show_hint:
             if outcome == "Too High":
-                st.warning("📈 Go HIGHER!")
+                st.warning("📈 Go LOWER!")
             elif outcome == "Too Low":
-                st.warning("📉 Go LOWER!")
+                st.warning("📉 Go HIGHER!")
 
         st.session_state.score = update_score(
             current_score=st.session_state.score,
