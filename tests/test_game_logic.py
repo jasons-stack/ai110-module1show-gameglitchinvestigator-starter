@@ -1,4 +1,4 @@
-from logic_utils import check_guess
+from logic_utils import check_guess, parse_guess, update_score
 
 def test_winning_guess():
     # If the secret is 50 and guess is 50, it should be a win

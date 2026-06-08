@@ -48,24 +48,27 @@ This is a number guessing game where the player tries to guess a secret
 
 Describe your fixed game in numbered steps so a reader can follow along without watching a video:
 
-1. User selects Normal difficulty (range 1–100, 8 attempts allowed)
-2. User enters a guess of 40 → Game returns "📉 Go LOWER!" 
-3. User enters a guess of 70 → Game returns "📈 Go HIGHER!"
-4. User enters a guess of 55 → Game returns "📉 Go LOWER!"
-5. User enters a guess of 63 → Game returns "📈 Go HIGHER!"
-6. User enters a guess of 58 → Game returns "📉 Go LOWER!"
-7. User enters a guess of 61 → Game returns "🎉 Correct!"
-8. Score updates correctly after each guess, decreasing by 5 per wrong guess
-9. Game ends, balloons appear, and final score is displayed
+1. Selected Normal difficulty (range 1–100, 8 attempts allowed)
+2. Guessed 50 → Got "📉 Go LOWER!"
+3. Guessed 25 → Got "📈 Go HIGHER!"
+4. Guessed 37 → Got "📈 Go HIGHER!"
+5. Guessed 43 → Got "🎉 Correct!"
+6. Score updated correctly after each wrong guess (-5 per wrong guess)
+7. Final score displayed and balloons appeared on screen
 
 **Screenshot** *(optional)*: <!-- Insert a screenshot of your fixed, winning game here -->
 
 ## 🧪 Test Results
 
 ```
-# Paste your pytest output here, e.g.:
-# pytest tests/
-# ========================= X passed in 0.XXs =========================
+tests/test_game_logic.py::test_winning_guess PASSED
+tests/test_game_logic.py::test_guess_too_high PASSED
+tests/test_game_logic.py::test_guess_too_low PASSED
+tests/test_game_logic.py::test_no_flipped_hint_on_even_attempt PASSED
+tests/test_game_logic.py::test_wrong_guess_never_increases_score PASSED
+tests/test_game_logic.py::test_parse_empty_string PASSED
+
+========================= 6 passed in 0.01s =========================
 ```
 
 ## 🚀 Stretch Features
