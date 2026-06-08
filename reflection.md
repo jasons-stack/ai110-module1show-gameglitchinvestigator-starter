@@ -44,11 +44,32 @@ One area where AI could be misleading is the score bug the broken scoring logic 
   and what it showed you about your code.
 - Did AI help you design or understand any tests? How?
 
+I decided a bug was fixed by forming a specific expectation first, then 
+testing that exact scenario in the running app to confirm the behavior 
+matched. For the flipped hints fix, I tested on attempt #2 with a guess 
+higher than the secret to confirm the hint now correctly said "Too High" 
+instead of "Too Low." I ran pytest on test_game_logic.py which showed all 
+six tests passing, including a specific test for the even-attempt flipped 
+hint scenario. AI helped me think through which edge cases to cover in 
+tests, though I verified each test case made sense for the intended behavior 
+before keeping it.
+
 ---
 
 ## 4. What did you learn about Streamlit and state?
 
 - How would you explain Streamlit "reruns" and session state to a friend who has never used Streamlit?
+
+Streamlit reruns the entire Python script from top to bottom every time a 
+user interacts with the app, like clicking a button or typing in a text box. 
+Session state is how Streamlit remembers values between those reruns 
+without it, variables like the secret number and attempt count would reset 
+to their initial values on every interaction. I would explain it to a friend 
+like this: imagine every button click refreshes the whole page, and session 
+state is like a sticky note that survives each refresh. This is why the bug 
+of initializing attempts to 1 instead of 0 mattered the initialization 
+only runs once on the first load, but that wrong starting value affects 
+every rerun after that.
 
 ---
 
@@ -58,3 +79,12 @@ One area where AI could be misleading is the score bug the broken scoring logic 
   - This could be a testing habit, a prompting strategy, or a way you used Git.
 - What is one thing you would do differently next time you work with AI on a coding task?
 - In one or two sentences, describe how this project changed the way you think about AI generated code.
+
+One habit I want to reuse is forming a specific expectation before testing saying "this input should produce this output" before running anything 
+makes bugs much easier to spot and explain. Next time I work with AI on a 
+coding task, I would ask it to explain edge cases earlier rather than just 
+asking what the code does, since the most subtle bugs in this project only 
+appeared under specific conditions like even-numbered attempts. This project 
+changed the way I think about AI-generated code because it showed me that 
+code can look completely reasonable and still be systematically wrong in 
+ways that only appear during actual use.
