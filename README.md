@@ -25,19 +25,38 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 📝 Document Your Experience
 
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
+- [x] Describe the game's purpose.
+This is a number guessing game where the player tries to guess a secret 
+  number within a limited number of attempts. The game gives hints after each guess and tracks a score that decreases with wrong guesses.
+
+
+- [x] Detail which bugs you found.
+  - **Flipped hints**: On even-numbered attempts, the secret was converted to a string causing lexicographic comparison instead of numeric, which made hints like "Too High" and "Too Low" unreliable.
+  - **Score bug**: Wrong guesses on even attempts incorrectly rewarded +5 points instead of deducting points.
+  - **Attempts initialization**: Attempts started at 1 instead of 0, consuming a free attempt before the player guessed anything.
+  - **Hard difficulty range**: Hard mode used range 1–50, which is actually easier than Normal's 1–100. Fixed to 1–200.
+
+- [x] Explain what fixes you applied.
+  - Moved all core logic into `logic_utils.py` and imported it in `app.py`.
+  - Fixed `check_guess` to always convert both guess and secret to integers 
+    before comparing.
+  - Fixed `update_score` to never reward points for wrong guesses.
+  - Fixed attempts initialization to start at 0.
+  - Fixed Hard difficulty range to 1–200.
 
 ## 📸 Demo Walkthrough
 
 Describe your fixed game in numbered steps so a reader can follow along without watching a video:
 
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
+1. User selects Normal difficulty (range 1–100, 8 attempts allowed)
+2. User enters a guess of 40 → Game returns "📉 Go LOWER!" 
+3. User enters a guess of 70 → Game returns "📈 Go HIGHER!"
+4. User enters a guess of 55 → Game returns "📉 Go LOWER!"
+5. User enters a guess of 63 → Game returns "📈 Go HIGHER!"
+6. User enters a guess of 58 → Game returns "📉 Go LOWER!"
+7. User enters a guess of 61 → Game returns "🎉 Correct!"
+8. Score updates correctly after each guess, decreasing by 5 per wrong guess
+9. Game ends, balloons appear, and final score is displayed
 
 **Screenshot** *(optional)*: <!-- Insert a screenshot of your fixed, winning game here -->
 
